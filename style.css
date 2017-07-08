@@ -48,3 +48,28 @@
   margin: 0 0 0 0;
   overflow: hidden;
 }
+#img-cont {
+  margin-top: 100px;
+}
+#img1 {
+  float: left;
+  width: 30%;
+  height: 300px;
+  border-radius: 25px;
+  border: 1px solid black;
+}
+#img2 {
+  float: left;
+  width: 30%;
+  height: 300px;
+  margin-left: 5%;
+  border-radius: 25px;
+  border: 1px solid black;
+}
+#img3 {
+  float: right;
+  width: 30%;
+  height: 300px;
+  border-radius: 25px;
+  border: 1px solid black;
+}
