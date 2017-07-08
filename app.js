@@ -20,7 +20,7 @@ var waterCan = new Items('waterCan', 'img/water-can.jpg', 0);
 var wineGlass = new Items('wineGlass', 'img/wine-glass.jpg', 0);
 var itemsArr = [bag, banana, bathroom, boots, breakfest, chair, cthulhu, dog, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, usb, waterCan, wineGlass];
 photos = [];
-photoName = [];
+photoNum = [];
 function Items(name, img, clickCount){
   this.name = name;
   this.img = img;
@@ -31,15 +31,17 @@ var photo2 = document.getElementById('img2');
 var photo3 = document.getElementById('img3');
 var photoArr = [photo1, photo2, photo3];
 
-//debugger;
+debugger;
 getPhoto();
-img1.addEventListener("click", function() {photoName[0].clickCount++; getPhoto()});
+img1.addEventListener("click", function() {clickCountAdd();/* clearRanNum();*/ getPhoto()});
 img2.addEventListener("click", function() {; getPhoto()});
 img3.addEventListener("click", function() {; getPhoto()});
+
 function getPhoto() {
   for (var i = 0; i < photoArr.length; i++){
-    photosToDisplay = itemsArr[randomNum()].img;
-    photoName[i] = itemsArr[num].name;
+    ranNum = randomNum();
+    photoNum.push(ranNum);
+    photosToDisplay = itemsArr[ranNum].img;
     photos.push(photosToDisplay);
     photoArr[i].src = photosToDisplay;
   }
@@ -49,4 +51,13 @@ function randomNum() {
   var max = 20;
   var num = Math.floor(Math.random() * (max - min));
   return num;
+}
+function clickCountAdd() {
+  itemsArr[photoNum[1]].clickCount++;
+  console.log(itemsArr[photoNum[1]].clickCount++);
+}
+function clearRanNum() {
+  for (var i = 0; i < 3; i++){
+    photoNum[i] = "";
+  }
 }
