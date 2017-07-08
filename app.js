@@ -23,6 +23,8 @@ function Items(name, img){
   this.name = name;
   this.img = img;
 }
-for (var i = 0; i < itemsArr.length; i++){
-  console.log(itemsArr[i])
-}
+debugger;
+var imgElement = document.getElementById("img");
+var createImage = document.createElement("img");
+createImage.img = boots.img;
+imgElement.appendChild(createImage);
