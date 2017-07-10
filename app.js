@@ -19,6 +19,10 @@ var usb = new Items('usb', 'img/usb.gif', 0);
 var waterCan = new Items('waterCan', 'img/water-can.jpg', 0);
 var wineGlass = new Items('wineGlass', 'img/wine-glass.jpg', 0);
 var itemsArr = [bag, banana, bathroom, boots, breakfest, chair, cthulhu, dog, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, usb, waterCan, wineGlass];
+var clickCountCheck = 0;
+test = false;
+var clickCountArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
 function Items(name, img, clickCount){
   this.name = name;
   this.img = img;
@@ -28,10 +32,15 @@ var photo1 = document.getElementById('img1');
 var photo2 = document.getElementById('img2');
 var photo3 = document.getElementById('img3');
 var photoArr = [photo1, photo2, photo3];
-img1.addEventListener("click", function() {itemsArr[ranNum].clickCount++; console.log(itemsArr[ranNum].clickCount); getPhoto()});
-img2.addEventListener("click", function() {itemsArr[ranNum].clickCount++; console.log(itemsArr[ranNum].clickCount); getPhoto()});
-img3.addEventListener("click", function() {itemsArr[ranNum].clickCount++; console.log(itemsArr[ranNum].clickCount); getPhoto()});
+img1.addEventListener("click", function() {clickCount(ranNum); clickCountAdd(); checkCount(); getPhoto()});
+img2.addEventListener("click", function() {clickCount(ranNum); clickCountAdd(); checkCount(); getPhoto()});
+img3.addEventListener("click", function() {clickCount(ranNum); clickCountAdd(); checkCount(); getPhoto()});
 getPhoto();
+
+function clickCount(ranNum){
+  var a = 1;
+  clickCountArr[ranNum] += a;
+}
 function randomNum() {
   var min = 1;
   var max = 20;
@@ -58,4 +67,46 @@ function getPhoto(){
     i = 2;
     getPhoto(i);
   }
+}
+function clickCountAdd(){
+  clickCountCheck++;
+}
+function checkCount() {
+  if (clickCountCheck >= 25){
+    test = true;
+    console.log(clickCountArr);
+    chart(clickCountArr);
+//      window.close("index.html");
+  }
+}
+function chart(clickCountArr) {
+  var itemNames = [];
+  var dataSet = [];
+  for (var i = 0; i < itemsArr.length; i++){
+    itemNames[i] = itemsArr[i].name;
+    dataSet[i] = clickCountArr[i];
+  }
+  var context = document.getElementById('chart').getContext('2d');
+  var chartColors = ['black', 'white', 'brown', 'green', 'blue', 'red'];
+
+  var myChart = new Chart(context, {
+    type: 'bar',
+    data: {
+      labels: itemNames,
+      datasets: [{
+        label: '# of Votes',
+        data: clickCountArr,
+        backgroundColor: chartColors
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
 }
