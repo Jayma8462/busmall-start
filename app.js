@@ -74,10 +74,22 @@ function clickCountAdd(){
 function checkCount() {
   if (clickCountCheck >= 25){
     test = true;
-    console.log(clickCountArr);
+    removeEventListener();
     chart(clickCountArr);
-//      window.close("index.html");
   }
+}
+function removeEventListener(){
+  var el = document.getElementById('img1');
+  elClone = el.cloneNode(true);
+  el.parentNode.replaceChild(elClone, el);
+
+  var el = document.getElementById('img2');
+  elClone = el.cloneNode(true);
+  el.parentNode.replaceChild(elClone, el);
+
+  var el = document.getElementById('img3');
+  elClone = el.cloneNode(true);
+  el.parentNode.replaceChild(elClone, el);
 }
 function chart(clickCountArr) {
   var itemNames = [];
@@ -87,7 +99,7 @@ function chart(clickCountArr) {
     dataSet[i] = clickCountArr[i];
   }
   var context = document.getElementById('chart').getContext('2d');
-  var chartColors = ['black', 'white', 'brown', 'green', 'blue', 'red'];
+  var chartColors = 'black';
 
   var myChart = new Chart(context, {
     type: 'bar',
