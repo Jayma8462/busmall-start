@@ -91,6 +91,10 @@ function removeEventListener(){
   elClone = el.cloneNode(true);
   el.parentNode.replaceChild(elClone, el);
 }
+function saveLocal(clickCountArr) {
+  localStorage.clicks = clickCountArr;
+  console.log(localStorage.clicks);
+}
 function chart(clickCountArr) {
   var itemNames = [];
   var dataSet = [];
